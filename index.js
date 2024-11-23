@@ -33,8 +33,39 @@ const users = [
 
 //assign 1 total balance
 
+const totalBalance = users.reduce((total, user) => total + user.balance, 0);
+console.log(totalBalance);
+
 //assign 2 names of those who have friends
+
+const haveFriends = users.reduce((list, user) => {
+  if (user.friends > 0) {
+    list.push(user.name);
+  }
+  return list;
+}, []);
+
+console.log(haveFriends); // ["Stephanie Brown", "Bruce Wayne", "Richard Grayson", "Jason Todd"]
 
 //assign 3 names ordered by num of friends
 
+const sortedFriends = users.sort((a, b) => b.friends - a.friends);
+const sortedFriendsNames = users.reduce((names, user) => {
+    names.push(user.name);
+  return names;
+}, []);
+console.log(sortedFriends);
+console.log(sortedFriendsNames);
+
 //assign 4 list of all skills, no repeats
+
+const skillsList = users.reduce((list, user) => {
+  user.skills.forEach(skill => {
+    if (!list.includes(skill)) {
+      list.push(skill);
+    }
+  });
+  return list; 
+}, []);
+
+console.log(skillsList);
